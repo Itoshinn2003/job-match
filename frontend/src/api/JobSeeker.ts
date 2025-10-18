@@ -1,10 +1,7 @@
-import axios from axios;
+import axios from 'axios'
 
-export const create = async (params: {
-    email: String,
-    password: String
-}) => {
-    const response = await axios.post("/api/v1/companies", params);
-    return response.data as { id: number, message: string };
+export const create = async (registration: { email: String; password: String }) => {
+  console.log('s')
+  const response = await axios.post('http://localhost:3001/api/jobseekers', { registration })
+  return response.data as { id: number; message: string }
 }
-
