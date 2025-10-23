@@ -18,7 +18,7 @@ const router = createRouter({
       component: SignUpJobSeeker,
     },
     {
-      path: '/signup/virified',
+      path: '/signup/verified',
       name: 'Verified',
       component: Verified,
     },
