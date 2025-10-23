@@ -1,0 +1,34 @@
+language: "ja-JP" # 日本語でのレビューを希望する場合
+
+reviews:
+  profile: "chill" # 穏やかなレビュー
+  high_level_summary: true # 高レベルな概要を提供
+  auto_review:
+    enabled: true
+    drafts: false # 下書きのレビューを無効にする
+
+path_filters:
+  - "frontend/src/**" # フロントエンド全体
+  - "server/**" # バックエンド全体
+
+file_path_instructions:
+  - path: "frontend/src/**"
+    instructions: |
+      - Vue公式スタイルガイドに従ってコードを書いているか確認
+      - TypeScript の型が適切に使われているか
+      - コンポーネント設計になっているか
+      - Vue.jsのベストプラクティスに従ったコードか確認
+
+  - path: "server/**"
+    instructions: |
+      - コントローラーの肥大化を確認
+      - オブジェクト指向で書かれているか
+      - モデルのバリデーションやコールバックの使い方をチェック
+      - セキュリティや SQL インジェクション対策の確認
+      - Rails のベストプラクティスに従ったコードか確認
+
+tools:
+  - name: "brakeman" # Rails用のセキュリティ静的解析ツール
+    enabled: true
+  - name: "eslint" # Vue用の静的解析ツール
+    enabled: true
