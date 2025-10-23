@@ -253,7 +253,6 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
-  devise
   devise_token_auth
   mysql2
   omniauth (>= 1.0.0)

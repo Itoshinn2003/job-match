@@ -1,17 +1,9 @@
 class Api::JobseekersController < DeviseTokenAuth::RegistrationsController
-    # def create
-    #     p "aaaaa"
+  private
 
-    #     json ={
-    #         email: sign_up_params[:email],
-    #         password: sign_up_params[:password]
-    #     }
-    #     render :json
-    # end
-
-
-    private
-     def sign_up_params
-         params.require(:registration).permit(:email, :password)
-     end
+  def sign_up_params
+    permitted = params.permit(:email, :password, :confirm_success_url)
+    permitted.delete(:confirm_success_url)
+    permitted
+  end
 end

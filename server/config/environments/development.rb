@@ -57,6 +57,20 @@ Rails.application.configure do
   config.active_job.verbose_enqueue_logs = true
 
 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3001 }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: "20030309shinn@gmail.com",
+    password: "fbzxuzpmbkwvgmll",
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+  config.action_mailer.raise_delivery_errors = true
+
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
