@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/pages/Home.vue'
 import SignUpJobSeeker from '@/pages/signup/JobSeeker.vue'
+import SignInJobSeeker from '@/pages/signin/JobSeeker.vue'
 import Verified from '@/pages/signup/Verified.vue'
 import EmailSent from '@/pages/signup/EmailSent.vue'
 
@@ -18,7 +19,12 @@ const router = createRouter({
       component: SignUpJobSeeker,
     },
     {
-      path: '/signup/virified',
+      path: '/signin/job_seeker',
+      name: 'SignInJobSeeker',
+      component: SignInJobSeeker,
+    },
+    {
+      path: '/signup/verified',
       name: 'Verified',
       component: Verified,
     },

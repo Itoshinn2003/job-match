@@ -1,0 +1,879 @@
+  [1m[36mJobSeeker Delete All (3.0ms)[0m  [1m[31mDELETE FROM `job_seekers`[0m
+Started POST "/api/jobseekers" for 192.168.65.1 at 2025-10-23 09:18:08 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::JobseekersController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "password" => "[FILTERED]", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+  [1m[36mJobSeeker Create (0.4ms)[0m  [1m[32mINSERT INTO `job_seekers` (`provider`, `uid`, `encrypted_password`, `reset_password_token`, `reset_password_sent_at`, `allow_password_change`, `remember_created_at`, `confirmation_token`, `confirmed_at`, `confirmation_sent_at`, `unconfirmed_email`, `name`, `nickname`, `image`, `email`, `tokens`, `created_at`, `updated_at`) VALUES ('email', '20030309shinn@gmail.com', '$2a$12$tho6y2A0T.D3oYpHNrabWORgSKR12KoP/DJsRAvK9jkQrQFLov.CO', NULL, NULL, FALSE, NULL, '_FERRsws-GnANZEKQXLr', NULL, '2025-10-23 09:18:09.167272', NULL, NULL, NULL, NULL, '20030309shinn@gmail.com', NULL, '2025-10-23 09:18:09.167100', '2025-10-23 09:18:09.167100')[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  Rendering /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 2.0ms | Allocations: 830)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 40.8ms
+Delivered mail 68f9f2d13c86d_d1388915e1@9781057ae878.mail (3120.7ms)
+Date: Thu, 23 Oct 2025 09:18:09 +0000
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: 20030309shinn@gmail.com
+Message-ID: <68f9f2d13c86d_d1388915e1@9781057ae878.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+client-config: default
+redirect-url: http://localhost:3000/signup/verified
+
+<p>Welcome 20030309shinn@gmail.com!</p>
+
+<p>You can confirm your account email through the link below: </p>
+
+<p><a href="http://localhost:3001/api/jobseekers/confirmation?config=default&confirmation_token=_FERRsws-GnANZEKQXLr&redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fsignup%2Fverified">Confirm my account</a></p>
+
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Update (0.6ms)[0m  [1m[33mUPDATE `job_seekers` SET `job_seekers`.`tokens` = '{\"RblCXCbjdhrC_Ry7lNHH8g\":{\"token\":\"$2a$10$io/9hfstMsR7J6PlxaAIuuL/5gwY1A5tZlPtZaSGvEsw2u3ChMhwm\",\"expiry\":1762420692}}', `job_seekers`.`updated_at` = '2025-10-23 09:18:12.458529' WHERE `job_seekers`.`id` = 17[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mJobSeeker Load (0.3ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`id` = 17 LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Load (0.2ms)[0m  [1m[37mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`id` = 17 LIMIT 1 FOR UPDATE[0m
+  [1m[36mJobSeeker Update (0.3ms)[0m  [1m[33mUPDATE `job_seekers` SET `job_seekers`.`tokens` = '{\"RblCXCbjdhrC_Ry7lNHH8g\":{\"token\":\"$2a$10$3Y/nkWuauPFAKd8r6GgJ3uGVA5KqA0FrpMY67Ve7fJzEqdbeqkDDG\",\"expiry\":1762420692,\"previous_token\":\"$2a$10$io/9hfstMsR7J6PlxaAIuuL/5gwY1A5tZlPtZaSGvEsw2u3ChMhwm\",\"updated_at\":\"2025-10-23T09:18:12Z\"}}', `job_seekers`.`updated_at` = '2025-10-23 09:18:12.560739' WHERE `job_seekers`.`id` = 17[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 3804ms (Views: 0.2ms | ActiveRecord: 12.0ms | Allocations: 57853)
+
+
+Started POST "/api/jobseekers" for 192.168.65.1 at 2025-10-23 09:23:17 +0000
+Processing by Api::JobseekersController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Content in 9ms (Views: 0.1ms | ActiveRecord: 1.0ms | Allocations: 5002)
+
+
+Started POST "/api/jobseekers" for 192.168.65.1 at 2025-10-23 09:23:35 +0000
+Processing by Api::JobseekersController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Content in 33ms (Views: 0.3ms | ActiveRecord: 1.1ms | Allocations: 4685)
+
+
+Started POST "/api/jobseekers/confirmation" for 192.168.65.1 at 2025-10-23 09:25:43 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameter: :confirm_success_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff811898a0>, params: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+[31mUnpermitted parameter: :confirm_success_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff811898a0>, params: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  [1m[36mJobSeeker Load (1.5ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`uid` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+[31mUnpermitted parameter: :confirm_success_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff811898a0>, params: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  Rendering /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 1.0ms | Allocations: 138)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 4.2ms
+Delivered mail 68f9f4972c081_d13a89164e@9781057ae878.mail (7880.7ms)
+Date: Thu, 23 Oct 2025 09:25:43 +0000
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: 20030309shinn@gmail.com
+Message-ID: <68f9f4972c081_d13a89164e@9781057ae878.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+client-config: default
+
+<p>Welcome 20030309shinn@gmail.com!</p>
+
+<p>You can confirm your account email through the link below: </p>
+
+<p><a href="http://localhost:3001/api/jobseekers/confirmation?config=default&confirmation_token=_FERRsws-GnANZEKQXLr">Confirm my account</a></p>
+
+Completed 200 OK in 7904ms (Views: 0.3ms | ActiveRecord: 1.5ms | Allocations: 4912)
+
+
+Started POST "/api/jobseekers/confirmation" for 192.168.65.1 at 2025-10-23 09:25:52 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameter: :confirm_success_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff81410c90>, params: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+[31mUnpermitted parameter: :confirm_success_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff81410c90>, params: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  [1m[36mJobSeeker Load (0.6ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`uid` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+[31mUnpermitted parameter: :confirm_success_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff81410c90>, params: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  Rendering /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 0.5ms | Allocations: 137)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 3.1ms
+Started POST "/api/jobseekers/confirmation" for 192.168.65.1 at 2025-10-23 09:25:53 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameter: :confirm_success_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff8046a020>, params: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+[31mUnpermitted parameter: :confirm_success_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff8046a020>, params: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  [1m[36mJobSeeker Load (0.5ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`uid` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+[31mUnpermitted parameter: :confirm_success_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff8046a020>, params: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  Rendering /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 0.4ms | Allocations: 137)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 1.9ms
+Started POST "/api/jobseekers/confirmation" for 192.168.65.1 at 2025-10-23 09:25:53 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameter: :confirm_success_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff8032c640>, params: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+[31mUnpermitted parameter: :confirm_success_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff8032c640>, params: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  [1m[36mJobSeeker Load (0.5ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`uid` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+[31mUnpermitted parameter: :confirm_success_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff8032c640>, params: {"email" => "20030309shinn@gmail.com", "confirm_success_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  Rendering /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 0.3ms | Allocations: 137)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 2.1ms
+Delivered mail 68f9f4a0c66de_d1388917db@9781057ae878.mail (8350.2ms)
+Date: Thu, 23 Oct 2025 09:25:52 +0000
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: 20030309shinn@gmail.com
+Message-ID: <68f9f4a0c66de_d1388917db@9781057ae878.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+client-config: default
+
+<p>Welcome 20030309shinn@gmail.com!</p>
+
+<p>You can confirm your account email through the link below: </p>
+
+<p><a href="http://localhost:3001/api/jobseekers/confirmation?config=default&confirmation_token=_FERRsws-GnANZEKQXLr">Confirm my account</a></p>
+
+Completed 200 OK in 8366ms (Views: 0.5ms | ActiveRecord: 0.6ms | Allocations: 15692)
+
+
+Delivered mail 68f9f4a1ba485_d139891974@9781057ae878.mail (7580.5ms)
+Date: Thu, 23 Oct 2025 09:25:53 +0000
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: 20030309shinn@gmail.com
+Message-ID: <68f9f4a1ba485_d139891974@9781057ae878.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+client-config: default
+
+<p>Welcome 20030309shinn@gmail.com!</p>
+
+<p>You can confirm your account email through the link below: </p>
+
+<p><a href="http://localhost:3001/api/jobseekers/confirmation?config=default&confirmation_token=_FERRsws-GnANZEKQXLr">Confirm my account</a></p>
+
+Completed 200 OK in 7591ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 6924)
+
+
+Delivered mail 68f9f4a18da0c_d13909188a@9781057ae878.mail (9596.9ms)
+Date: Thu, 23 Oct 2025 09:25:53 +0000
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: 20030309shinn@gmail.com
+Message-ID: <68f9f4a18da0c_d13909188a@9781057ae878.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+client-config: default
+
+<p>Welcome 20030309shinn@gmail.com!</p>
+
+<p>You can confirm your account email through the link below: </p>
+
+<p><a href="http://localhost:3001/api/jobseekers/confirmation?config=default&confirmation_token=_FERRsws-GnANZEKQXLr">Confirm my account</a></p>
+
+Completed 200 OK in 9608ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 12114)
+
+
+Started GET "/api/jobseekers/confirmation?config=default&confirmation_token=[FILTERED]" for 192.168.65.1 at 2025-10-23 09:27:47 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#show as HTML
+  Parameters: {"config" => "default", "confirmation_token" => "[FILTERED]"}
+[31mUnpermitted parameter: :config. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: show, request: #<ActionDispatch::Request:0x0000ffff80500b60>, params: {"config" => "default", "confirmation_token" => "[FILTERED]", "controller" => "devise_token_auth/confirmations", "action" => "show"} }[0m
+  [1m[36mJobSeeker Load (1.2ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`confirmation_token` = '_FERRsws-GnANZEKQXLr' ORDER BY `job_seekers`.`id` ASC LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Update (0.8ms)[0m  [1m[33mUPDATE `job_seekers` SET `job_seekers`.`confirmed_at` = '2025-10-23 09:27:47.352873', `job_seekers`.`updated_at` = '2025-10-23 09:27:47.353626' WHERE `job_seekers`.`id` = 17[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 4.4ms | Allocations: 6223)
+
+
+  
+ArgumentError (bad argument (expected URI object or URI string)):
+  
+/usr/local/lib/ruby/3.4.0/uri/common.rb:871:in 'Kernel#URI'
+devise_token_auth (1.2.5) lib/devise_token_auth/url.rb:6:in 'DeviseTokenAuth::Url.generate'
+devise_token_auth (1.2.5) app/controllers/devise_token_auth/confirmations_controller.rb:24:in 'DeviseTokenAuth::ConfirmationsController#show'
+actionpack (7.1.5.2) lib/action_controller/metal/basic_implicit_render.rb:6:in 'ActionController::BasicImplicitRender#send_action'
+actionpack (7.1.5.2) lib/abstract_controller/base.rb:224:in 'AbstractController::Base#process_action'
+actionpack (7.1.5.2) lib/action_controller/metal/rendering.rb:165:in 'ActionController::Rendering#process_action'
+actionpack (7.1.5.2) lib/abstract_controller/callbacks.rb:259:in 'block in AbstractController::Callbacks#process_action'
+activesupport (7.1.5.2) lib/active_support/callbacks.rb:110:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.2) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.2) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.2) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.2) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.2) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.2) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.2) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.2) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.2) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionpack (7.1.5.2) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.2) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.2) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.2) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.2) lib/action_dispatch/routing/mapper.rb:30:in 'block in <class:Constraints>'
+actionpack (7.1.5.2) lib/action_dispatch/routing/mapper.rb:60:in 'ActionDispatch::Routing::Mapper::Constraints#serve'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.2) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.2.1) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.1) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.2.1) lib/rack/head.rb:15:in 'Rack::Head#call'
+activerecord (7.1.5.2) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.2) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.2) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.2) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.2) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.2) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.2) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.2) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.2) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.2.1) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.2.1) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.2) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (7.0.2) lib/puma/configuration.rb:297:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.0.2) lib/puma/request.rb:101:in 'block in Puma::Request#handle_request'
+puma (7.0.2) lib/puma/thread_pool.rb:346:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.0.2) lib/puma/request.rb:100:in 'Puma::Request#handle_request'
+puma (7.0.2) lib/puma/server.rb:497:in 'Puma::Server#process_client'
+puma (7.0.2) lib/puma/server.rb:266:in 'block in Puma::Server#run'
+puma (7.0.2) lib/puma/thread_pool.rb:173:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/favicon.ico" for 192.168.65.1 at 2025-10-23 09:27:47 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/api/jobseekers/confirmation" for 192.168.65.1 at 2025-10-23 09:45:38 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "redirecr_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameter: :redirecr_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff800a7960>, params: {"email" => "20030309shinn@gmail.com", "redirecr_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+[31mUnpermitted parameter: :redirecr_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff800a7960>, params: {"email" => "20030309shinn@gmail.com", "redirecr_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  [1m[36mJobSeeker Load (0.7ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`uid` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+[31mUnpermitted parameter: :redirecr_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff800a7960>, params: {"email" => "20030309shinn@gmail.com", "redirecr_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  Rendering /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 0.4ms | Allocations: 137)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 2.4ms
+Delivered mail 68f9f942d9889_d139092024@9781057ae878.mail (4935.8ms)
+Date: Thu, 23 Oct 2025 09:45:38 +0000
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: 20030309shinn@gmail.com
+Message-ID: <68f9f942d9889_d139092024@9781057ae878.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+client-config: default
+
+<p>Welcome 20030309shinn@gmail.com!</p>
+
+<p>You can confirm your account email through the link below: </p>
+
+<p><a href="http://localhost:3001/api/jobseekers/confirmation?config=default&confirmation_token=_FERRsws-GnANZEKQXLr">Confirm my account</a></p>
+
+Completed 200 OK in 4950ms (Views: 0.9ms | ActiveRecord: 1.1ms | Allocations: 4583)
+
+
+Started GET "/api/jobseekers/confirmation?config=default&confirmation_token=[FILTERED]" for 192.168.65.1 at 2025-10-23 09:46:30 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#show as HTML
+  Parameters: {"config" => "default", "confirmation_token" => "[FILTERED]"}
+[31mUnpermitted parameter: :config. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: show, request: #<ActionDispatch::Request:0x0000ffff7bfb1910>, params: {"config" => "default", "confirmation_token" => "[FILTERED]", "controller" => "devise_token_auth/confirmations", "action" => "show"} }[0m
+  [1m[36mJobSeeker Load (1.0ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`confirmation_token` = '_FERRsws-GnANZEKQXLr' ORDER BY `job_seekers`.`id` ASC LIMIT 1[0m
+Completed 404 Not Found in 6ms (ActiveRecord: 1.0ms | Allocations: 1436)
+
+
+  
+ActionController::RoutingError (Not Found):
+  
+Started POST "/api/jobseekers/confirmation" for 192.168.65.1 at 2025-10-23 09:47:04 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "redirecr_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameter: :redirecr_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff7bfd8f38>, params: {"email" => "20030309shinn@gmail.com", "redirecr_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+[31mUnpermitted parameter: :redirecr_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff7bfd8f38>, params: {"email" => "20030309shinn@gmail.com", "redirecr_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  [1m[36mJobSeeker Load (0.6ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`uid` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+[31mUnpermitted parameter: :redirecr_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff7bfd8f38>, params: {"email" => "20030309shinn@gmail.com", "redirecr_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  Rendering /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 0.5ms | Allocations: 137)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 2.9ms
+Failed delivery of mail 68f9f998e3c53_d138892161@9781057ae878.mail error_class=Net::OpenTimeout error_message="execution expired"
+Date: Thu, 23 Oct 2025 09:47:04 +0000
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: 20030309shinn@gmail.com
+Message-ID: <68f9f998e3c53_d138892161@9781057ae878.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+client-config: default
+
+<p>Welcome 20030309shinn@gmail.com!</p>
+
+<p>You can confirm your account email through the link below: </p>
+
+<p><a href="http://localhost:3001/api/jobseekers/confirmation?config=default&confirmation_token=_FERRsws-GnANZEKQXLr">Confirm my account</a></p>
+
+Completed 500 Internal Server Error in 5019ms (ActiveRecord: 0.6ms | Allocations: 3516)
+
+
+  
+Net::OpenTimeout (execution expired):
+  
+net-smtp (0.5.1) lib/net/smtp.rb:663:in 'TCPSocket#initialize'
+net-smtp (0.5.1) lib/net/smtp.rb:663:in 'IO.open'
+net-smtp (0.5.1) lib/net/smtp.rb:663:in 'Net::SMTP#tcp_socket'
+net-smtp (0.5.1) lib/net/smtp.rb:672:in 'block in Net::SMTP#do_start'
+timeout (0.4.3) lib/timeout.rb:185:in 'block in Timeout.timeout'
+timeout (0.4.3) lib/timeout.rb:192:in 'Timeout.timeout'
+net-smtp (0.5.1) lib/net/smtp.rb:671:in 'Net::SMTP#do_start'
+net-smtp (0.5.1) lib/net/smtp.rb:642:in 'Net::SMTP#start'
+mail (2.8.1) lib/mail/network/delivery_methods/smtp.rb:109:in 'Mail::SMTP#start_smtp_session'
+mail (2.8.1) lib/mail/network/delivery_methods/smtp.rb:100:in 'Mail::SMTP#deliver!'
+mail (2.8.1) lib/mail/message.rb:2145:in 'Mail::Message#do_delivery'
+mail (2.8.1) lib/mail/message.rb:253:in 'block in Mail::Message#deliver'
+actionmailer (7.1.5.2) lib/action_mailer/base.rb:600:in 'block in ActionMailer::Base.deliver_mail'
+activesupport (7.1.5.2) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.2) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionmailer (7.1.5.2) lib/action_mailer/base.rb:598:in 'ActionMailer::Base.deliver_mail'
+mail (2.8.1) lib/mail/message.rb:253:in 'Mail::Message#deliver'
+actionmailer (7.1.5.2) lib/action_mailer/message_delivery.rb:126:in 'block (2 levels) in ActionMailer::MessageDelivery#deliver_now'
+activesupport (7.1.5.2) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionmailer (7.1.5.2) lib/action_mailer/message_delivery.rb:125:in 'block in ActionMailer::MessageDelivery#deliver_now'
+actionmailer (7.1.5.2) lib/action_mailer/rescuable.rb:21:in 'ActionMailer::Rescuable#handle_exceptions'
+actionmailer (7.1.5.2) lib/action_mailer/message_delivery.rb:124:in 'ActionMailer::MessageDelivery#deliver_now'
+devise (4.9.4) lib/devise/models/authenticatable.rb:204:in 'Devise::Models::Authenticatable#send_devise_notification'
+devise_token_auth (1.2.5) app/models/devise_token_auth/concerns/user.rb:65:in 'JobSeeker#send_confirmation_instructions'
+devise_token_auth (1.2.5) app/controllers/devise_token_auth/confirmations_controller.rb:46:in 'DeviseTokenAuth::ConfirmationsController#create'
+actionpack (7.1.5.2) lib/action_controller/metal/basic_implicit_render.rb:6:in 'ActionController::BasicImplicitRender#send_action'
+actionpack (7.1.5.2) lib/abstract_controller/base.rb:224:in 'AbstractController::Base#process_action'
+actionpack (7.1.5.2) lib/action_controller/metal/rendering.rb:165:in 'ActionController::Rendering#process_action'
+actionpack (7.1.5.2) lib/abstract_controller/callbacks.rb:259:in 'block in AbstractController::Callbacks#process_action'
+activesupport (7.1.5.2) lib/active_support/callbacks.rb:110:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.2) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.2) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.2) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.2) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.2) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.2) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.2) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.2) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.2) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionpack (7.1.5.2) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.2) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.2) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.2) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.2) lib/action_dispatch/routing/mapper.rb:30:in 'block in <class:Constraints>'
+actionpack (7.1.5.2) lib/action_dispatch/routing/mapper.rb:60:in 'ActionDispatch::Routing::Mapper::Constraints#serve'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.2) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.2.1) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.1) lib/rack/conditional_get.rb:44:in 'Rack::ConditionalGet#call'
+rack (3.2.1) lib/rack/head.rb:15:in 'Rack::Head#call'
+activerecord (7.1.5.2) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.2) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.2) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.2) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.2) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.2) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.2) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.2) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.2) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.2.1) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.2.1) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.2) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (7.0.2) lib/puma/configuration.rb:297:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.0.2) lib/puma/request.rb:101:in 'block in Puma::Request#handle_request'
+puma (7.0.2) lib/puma/thread_pool.rb:346:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.0.2) lib/puma/request.rb:100:in 'Puma::Request#handle_request'
+puma (7.0.2) lib/puma/server.rb:497:in 'Puma::Server#process_client'
+puma (7.0.2) lib/puma/server.rb:266:in 'block in Puma::Server#run'
+puma (7.0.2) lib/puma/thread_pool.rb:173:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/api/jobseekers/confirmation?config=default&confirmation_token=[FILTERED]" for 192.168.65.1 at 2025-10-23 09:49:25 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#show as HTML
+  Parameters: {"config" => "default", "confirmation_token" => "[FILTERED]"}
+[31mUnpermitted parameter: :config. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: show, request: #<ActionDispatch::Request:0x0000ffff7bf30338>, params: {"config" => "default", "confirmation_token" => "[FILTERED]", "controller" => "devise_token_auth/confirmations", "action" => "show"} }[0m
+  [1m[36mJobSeeker Load (0.6ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`confirmation_token` = '_FERRsws-GnANZEKQXLr' ORDER BY `job_seekers`.`id` ASC LIMIT 1[0m
+Completed 404 Not Found in 7ms (ActiveRecord: 0.5ms | Allocations: 1427)
+
+
+  
+ActionController::RoutingError (Not Found):
+  
+Started POST "/api/jobseekers/confirmation" for 192.168.65.1 at 2025-10-23 09:49:30 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "redirecr_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameter: :redirecr_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff80035dd8>, params: {"email" => "20030309shinn@gmail.com", "redirecr_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+[31mUnpermitted parameter: :redirecr_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff80035dd8>, params: {"email" => "20030309shinn@gmail.com", "redirecr_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  [1m[36mJobSeeker Load (0.6ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`uid` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+[31mUnpermitted parameter: :redirecr_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff80035dd8>, params: {"email" => "20030309shinn@gmail.com", "redirecr_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  Rendering /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 0.4ms | Allocations: 137)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 2.0ms
+Delivered mail 68f9fa2af3592_d13a092260@9781057ae878.mail (9705.9ms)
+Date: Thu, 23 Oct 2025 09:49:30 +0000
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: 20030309shinn@gmail.com
+Message-ID: <68f9fa2af3592_d13a092260@9781057ae878.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+client-config: default
+
+<p>Welcome 20030309shinn@gmail.com!</p>
+
+<p>You can confirm your account email through the link below: </p>
+
+<p><a href="http://localhost:3001/api/jobseekers/confirmation?config=default&confirmation_token=_FERRsws-GnANZEKQXLr">Confirm my account</a></p>
+
+Completed 200 OK in 9717ms (Views: 0.4ms | ActiveRecord: 0.6ms | Allocations: 4518)
+
+
+Started POST "/api/jobseekers/confirmation" for 192.168.65.1 at 2025-10-23 09:50:09 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "redirect_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameter: :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff800c0aa0>, params: {"email" => "20030309shinn@gmail.com", "redirect_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+[31mUnpermitted parameter: :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff800c0aa0>, params: {"email" => "20030309shinn@gmail.com", "redirect_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  [1m[36mJobSeeker Load (0.7ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`uid` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+[31mUnpermitted parameter: :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff800c0aa0>, params: {"email" => "20030309shinn@gmail.com", "redirect_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  Rendering /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 0.4ms | Allocations: 150)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 2.1ms
+Delivered mail 68f9fa51b9f7d_d13a89233c@9781057ae878.mail (11644.0ms)
+Date: Thu, 23 Oct 2025 09:50:09 +0000
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: 20030309shinn@gmail.com
+Message-ID: <68f9fa51b9f7d_d13a89233c@9781057ae878.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+redirect-url: http://localhost:3000/signup/verified
+client-config: default
+
+<p>Welcome 20030309shinn@gmail.com!</p>
+
+<p>You can confirm your account email through the link below: </p>
+
+<p><a href="http://localhost:3001/api/jobseekers/confirmation?config=default&confirmation_token=_FERRsws-GnANZEKQXLr&redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fsignup%2Fverified">Confirm my account</a></p>
+
+Completed 200 OK in 11656ms (Views: 0.4ms | ActiveRecord: 0.6ms | Allocations: 4618)
+
+
+Started GET "/api/jobseekers/confirmation?config=default&confirmation_token=[FILTERED]&redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fsignup%2Fverified" for 192.168.65.1 at 2025-10-23 09:50:35 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#show as HTML
+  Parameters: {"config" => "default", "confirmation_token" => "[FILTERED]", "redirect_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameters: :config, :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: show, request: #<ActionDispatch::Request:0x0000ffff80118fc0>, params: {"config" => "default", "confirmation_token" => "[FILTERED]", "redirect_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "show"} }[0m
+  [1m[36mJobSeeker Load (0.5ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`confirmation_token` = '_FERRsws-GnANZEKQXLr' ORDER BY `job_seekers`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/signup/verified?account_confirmation_success=false
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms | Allocations: 1444)
+
+
+  [1m[36mJobSeeker Delete All (6.7ms)[0m  [1m[31mDELETE FROM `job_seekers`[0m
+Started POST "/api/jobseekers" for 192.168.65.1 at 2025-10-23 09:53:31 +0000
+Processing by Api::JobseekersController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "password" => "[FILTERED]", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+  [1m[36mJobSeeker Create (0.6ms)[0m  [1m[32mINSERT INTO `job_seekers` (`provider`, `uid`, `encrypted_password`, `reset_password_token`, `reset_password_sent_at`, `allow_password_change`, `remember_created_at`, `confirmation_token`, `confirmed_at`, `confirmation_sent_at`, `unconfirmed_email`, `name`, `nickname`, `image`, `email`, `tokens`, `created_at`, `updated_at`) VALUES ('email', '20030309shinn@gmail.com', '$2a$12$.qQN3JGJTLzwFJocqykO/ugC3RvbaRqX2eRVaD2F.690EqRVVMZx6', NULL, NULL, FALSE, NULL, 'Vo-Gv-mgkxfwZAzDS3v6', NULL, '2025-10-23 09:53:31.682467', NULL, NULL, NULL, NULL, '20030309shinn@gmail.com', NULL, '2025-10-23 09:53:31.682329', '2025-10-23 09:53:31.682329')[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 0.6ms | Allocations: 151)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 2.4ms
+Delivered mail 68f9fb1ba91f7_d13909248c@9781057ae878.mail (3335.3ms)
+Date: Thu, 23 Oct 2025 09:53:31 +0000
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: 20030309shinn@gmail.com
+Message-ID: <68f9fb1ba91f7_d13909248c@9781057ae878.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+client-config: default
+redirect-url: http://localhost:3000/signup/verified
+
+<p>Welcome 20030309shinn@gmail.com!</p>
+
+<p>You can confirm your account email through the link below: </p>
+
+<p><a href="http://localhost:3001/api/jobseekers/confirmation?config=default&confirmation_token=Vo-Gv-mgkxfwZAzDS3v6&redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fsignup%2Fverified">Confirm my account</a></p>
+
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Update (0.7ms)[0m  [1m[33mUPDATE `job_seekers` SET `job_seekers`.`tokens` = '{\"KECFATM8sFkzts56Ti0RWQ\":{\"token\":\"$2a$10$CK3k8v7niiAbHhMJJlBYIOGVbAQtQxB4OggWRwVPEJtGHNbVi5QL.\",\"expiry\":1762422815}}', `job_seekers`.`updated_at` = '2025-10-23 09:53:35.119629' WHERE `job_seekers`.`id` = 18[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mJobSeeker Load (0.4ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`id` = 18 LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Load (0.4ms)[0m  [1m[37mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`id` = 18 LIMIT 1 FOR UPDATE[0m
+  [1m[36mJobSeeker Update (0.6ms)[0m  [1m[33mUPDATE `job_seekers` SET `job_seekers`.`tokens` = '{\"KECFATM8sFkzts56Ti0RWQ\":{\"token\":\"$2a$10$g8hDlZZRsYGkahTWIEsYzOB42bLehg1qSGQ66Bbq/UtgUIXxETUCu\",\"expiry\":1762422815,\"previous_token\":\"$2a$10$CK3k8v7niiAbHhMJJlBYIOGVbAQtQxB4OggWRwVPEJtGHNbVi5QL.\",\"updated_at\":\"2025-10-23T09:53:35Z\"}}', `job_seekers`.`updated_at` = '2025-10-23 09:53:35.235024' WHERE `job_seekers`.`id` = 18[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 3918ms (Views: 0.2ms | ActiveRecord: 9.6ms | Allocations: 17467)
+
+
+Started POST "/api/jobseekers/confirmation" for 192.168.65.1 at 2025-10-23 09:53:47 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "redirect_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameter: :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff7bf77b20>, params: {"email" => "20030309shinn@gmail.com", "redirect_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+[31mUnpermitted parameter: :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff7bf77b20>, params: {"email" => "20030309shinn@gmail.com", "redirect_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  [1m[36mJobSeeker Load (0.6ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`uid` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+[31mUnpermitted parameter: :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff7bf77b20>, params: {"email" => "20030309shinn@gmail.com", "redirect_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  Rendering /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 0.4ms | Allocations: 150)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 3.6ms
+Delivered mail 68f9fb2b68a4b_d13a09251b@9781057ae878.mail (2955.9ms)
+Date: Thu, 23 Oct 2025 09:53:47 +0000
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: 20030309shinn@gmail.com
+Message-ID: <68f9fb2b68a4b_d13a09251b@9781057ae878.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+redirect-url: http://localhost:3000/signup/verified
+client-config: default
+
+<p>Welcome 20030309shinn@gmail.com!</p>
+
+<p>You can confirm your account email through the link below: </p>
+
+<p><a href="http://localhost:3001/api/jobseekers/confirmation?config=default&confirmation_token=Vo-Gv-mgkxfwZAzDS3v6&redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fsignup%2Fverified">Confirm my account</a></p>
+
+Completed 200 OK in 2970ms (Views: 0.4ms | ActiveRecord: 0.6ms | Allocations: 4585)
+
+
+Started GET "/api/jobseekers/confirmation?config=default&confirmation_token=[FILTERED]&redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fsignup%2Fverified" for 192.168.65.1 at 2025-10-23 09:53:53 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#show as HTML
+  Parameters: {"config" => "default", "confirmation_token" => "[FILTERED]", "redirect_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameters: :config, :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: show, request: #<ActionDispatch::Request:0x0000ffff800826d8>, params: {"config" => "default", "confirmation_token" => "[FILTERED]", "redirect_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "show"} }[0m
+  [1m[36mJobSeeker Load (0.4ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`confirmation_token` = 'Vo-Gv-mgkxfwZAzDS3v6' ORDER BY `job_seekers`.`id` ASC LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Update (0.4ms)[0m  [1m[33mUPDATE `job_seekers` SET `job_seekers`.`confirmed_at` = '2025-10-23 09:53:53.353419', `job_seekers`.`updated_at` = '2025-10-23 09:53:53.354136' WHERE `job_seekers`.`id` = 18[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/signup/verified?account_confirmation_success=true
+Completed 302 Found in 16ms (ActiveRecord: 2.4ms | Allocations: 4827)
+
+
+  [1m[36mJobSeeker Delete All (11.0ms)[0m  [1m[31mDELETE FROM `job_seekers`[0m
+Started POST "/api/job_seekers" for 192.168.65.1 at 2025-10-23 10:53:05 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (3.9ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/api/job_seekers"):
+  
+Started POST "/api/jobseekers" for 192.168.65.1 at 2025-10-23 10:53:53 +0000
+Processing by Api::JobseekersController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "password" => "[FILTERED]", "confirm_success_url" => "/signup/verified"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+  [1m[36mJobSeeker Create (0.8ms)[0m  [1m[32mINSERT INTO `job_seekers` (`provider`, `uid`, `encrypted_password`, `reset_password_token`, `reset_password_sent_at`, `allow_password_change`, `remember_created_at`, `confirmation_token`, `confirmed_at`, `confirmation_sent_at`, `unconfirmed_email`, `name`, `nickname`, `image`, `email`, `tokens`, `created_at`, `updated_at`) VALUES ('email', '20030309shinn@gmail.com', '$2a$12$Pfa4dZHiD.h3YacOvb.3fOFFA0bF1KvtbUeq0OhUUaHdZF9645va.', NULL, NULL, FALSE, NULL, '82VE-Wc57dzZwecTdr5r', NULL, '2025-10-23 10:53:54.118870', NULL, NULL, NULL, NULL, '20030309shinn@gmail.com', NULL, '2025-10-23 10:53:54.118729', '2025-10-23 10:53:54.118729')[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  Rendering /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 2.0ms | Allocations: 701)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 11.6ms
+Delivered mail 68fa09422b376_d1398-5e6@9781057ae878.mail (2444.0ms)
+Date: Thu, 23 Oct 2025 10:53:54 +0000
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: 20030309shinn@gmail.com
+Message-ID: <68fa09422b376_d1398-5e6@9781057ae878.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+client-config: default
+redirect-url: /signup/verified
+
+<p>Welcome 20030309shinn@gmail.com!</p>
+
+<p>You can confirm your account email through the link below: </p>
+
+<p><a href="http://localhost:3001/api/jobseekers/confirmation?config=default&confirmation_token=82VE-Wc57dzZwecTdr5r&redirect_url=%2Fsignup%2Fverified">Confirm my account</a></p>
+
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Update (0.6ms)[0m  [1m[33mUPDATE `job_seekers` SET `job_seekers`.`tokens` = '{\"tw3iJCnJfmUFoaFUhJmAZA\":{\"token\":\"$2a$10$xR4m3H9qAQwsnV7HTFWJzuCuyo3NprsjIV90DPjW6dAAPZ2Ysnrxa\",\"expiry\":1762426436}}', `job_seekers`.`updated_at` = '2025-10-23 10:53:56.710771' WHERE `job_seekers`.`id` = 19[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mJobSeeker Load (0.3ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`id` = 19 LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Load (0.2ms)[0m  [1m[37mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`id` = 19 LIMIT 1 FOR UPDATE[0m
+  [1m[36mJobSeeker Update (0.4ms)[0m  [1m[33mUPDATE `job_seekers` SET `job_seekers`.`tokens` = '{\"tw3iJCnJfmUFoaFUhJmAZA\":{\"token\":\"$2a$10$rlX6oNV6z3Lgz9lBwB3vh.20zPJY7gbfTBM2lx2qBctq1sI4gtHs2\",\"expiry\":1762426436,\"previous_token\":\"$2a$10$xR4m3H9qAQwsnV7HTFWJzuCuyo3NprsjIV90DPjW6dAAPZ2Ysnrxa\",\"updated_at\":\"2025-10-23T10:53:56Z\"}}', `job_seekers`.`updated_at` = '2025-10-23 10:53:56.816914' WHERE `job_seekers`.`id` = 19[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 3107ms (Views: 0.2ms | ActiveRecord: 16.9ms | Allocations: 51032)
+
+
+Started GET "/api/jobseekers/confirmation?config=default&confirmation_token=[FILTERED]&redirect_url=%2Fsignup%2Fverified" for 192.168.65.1 at 2025-10-23 10:54:11 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#show as HTML
+  Parameters: {"config" => "default", "confirmation_token" => "[FILTERED]", "redirect_url" => "/signup/verified"}
+[31mUnpermitted parameters: :config, :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: show, request: #<ActionDispatch::Request:0x0000ffff9c9aea60>, params: {"config" => "default", "confirmation_token" => "[FILTERED]", "redirect_url" => "/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "show"} }[0m
+  [1m[36mJobSeeker Load (0.9ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`confirmation_token` = '82VE-Wc57dzZwecTdr5r' ORDER BY `job_seekers`.`id` ASC LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Update (0.4ms)[0m  [1m[33mUPDATE `job_seekers` SET `job_seekers`.`confirmed_at` = '2025-10-23 10:54:11.544972', `job_seekers`.`updated_at` = '2025-10-23 10:54:11.545368' WHERE `job_seekers`.`id` = 19[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to 
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 2.9ms | Allocations: 5706)
+
+
+  
+ActionController::Redirecting::UnsafeRedirectError (Unsafe redirect to "http://localhost:3001:///signup/verified?account_confirmation_success=true", pass allow_other_host: true to redirect anyway.):
+  
+actionpack (7.1.5.2) lib/action_controller/metal/redirecting.rb:199:in 'ActionController::Redirecting#_enforce_open_redirect_protection'
+actionpack (7.1.5.2) lib/action_controller/metal/redirecting.rb:95:in 'ActionController::Redirecting#redirect_to'
+actionpack (7.1.5.2) lib/action_controller/metal/instrumentation.rb:49:in 'block in ActionController::Instrumentation#redirect_to'
+activesupport (7.1.5.2) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.2) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.2) lib/action_controller/metal/instrumentation.rb:48:in 'ActionController::Instrumentation#redirect_to'
+devise_token_auth (1.2.5) app/controllers/devise_token_auth/confirmations_controller.rb:27:in 'DeviseTokenAuth::ConfirmationsController#show'
+actionpack (7.1.5.2) lib/action_controller/metal/basic_implicit_render.rb:6:in 'ActionController::BasicImplicitRender#send_action'
+actionpack (7.1.5.2) lib/abstract_controller/base.rb:224:in 'AbstractController::Base#process_action'
+actionpack (7.1.5.2) lib/action_controller/metal/rendering.rb:165:in 'ActionController::Rendering#process_action'
+actionpack (7.1.5.2) lib/abstract_controller/callbacks.rb:259:in 'block in AbstractController::Callbacks#process_action'
+activesupport (7.1.5.2) lib/active_support/callbacks.rb:110:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.2) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.2) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.2) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.2) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.2) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.2) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.2) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.2) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.2) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionpack (7.1.5.2) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.2) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.2) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.2) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.2) lib/action_dispatch/routing/mapper.rb:30:in 'block in <class:Constraints>'
+actionpack (7.1.5.2) lib/action_dispatch/routing/mapper.rb:60:in 'ActionDispatch::Routing::Mapper::Constraints#serve'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.2) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.2) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.2.1) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.1) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.2.1) lib/rack/head.rb:15:in 'Rack::Head#call'
+activerecord (7.1.5.2) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.2) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.2) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.2) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.2) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.2) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.2) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.2) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.2) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.2.1) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.2.1) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.2) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.2) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (7.0.2) lib/puma/configuration.rb:297:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.0.2) lib/puma/request.rb:101:in 'block in Puma::Request#handle_request'
+puma (7.0.2) lib/puma/thread_pool.rb:346:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.0.2) lib/puma/request.rb:100:in 'Puma::Request#handle_request'
+puma (7.0.2) lib/puma/server.rb:497:in 'Puma::Server#process_client'
+puma (7.0.2) lib/puma/server.rb:266:in 'block in Puma::Server#run'
+puma (7.0.2) lib/puma/thread_pool.rb:173:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/api/jobseekers/confirmation" for 192.168.65.1 at 2025-10-23 10:54:39 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "redirect_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameter: :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff95d76190>, params: {"email" => "20030309shinn@gmail.com", "redirect_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+[31mUnpermitted parameter: :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff95d76190>, params: {"email" => "20030309shinn@gmail.com", "redirect_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  [1m[36mJobSeeker Load (0.6ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`uid` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+[31mUnpermitted parameter: :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: create, request: #<ActionDispatch::Request:0x0000ffff95d76190>, params: {"email" => "20030309shinn@gmail.com", "redirect_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "create"} }[0m
+  Rendering /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/local/bundle/ruby/3.4.0/gems/devise_token_auth-1.2.5/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 0.4ms | Allocations: 150)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 2.4ms
+Delivered mail 68fa096f32bae_d1388-453@9781057ae878.mail (2645.0ms)
+Date: Thu, 23 Oct 2025 10:54:39 +0000
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: 20030309shinn@gmail.com
+Message-ID: <68fa096f32bae_d1388-453@9781057ae878.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+redirect-url: http://localhost:3000/signup/verified
+client-config: default
+
+<p>Welcome 20030309shinn@gmail.com!</p>
+
+<p>You can confirm your account email through the link below: </p>
+
+<p><a href="http://localhost:3001/api/jobseekers/confirmation?config=default&confirmation_token=82VE-Wc57dzZwecTdr5r&redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fsignup%2Fverified">Confirm my account</a></p>
+
+Completed 200 OK in 2656ms (Views: 0.5ms | ActiveRecord: 0.6ms | Allocations: 4872)
+
+
+Started GET "/api/jobseekers/confirmation?config=default&confirmation_token=[FILTERED]&redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fsignup%2Fverified" for 192.168.65.1 at 2025-10-23 10:54:44 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#show as HTML
+  Parameters: {"config" => "default", "confirmation_token" => "[FILTERED]", "redirect_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameters: :config, :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: show, request: #<ActionDispatch::Request:0x0000ffff95a00510>, params: {"config" => "default", "confirmation_token" => "[FILTERED]", "redirect_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "show"} }[0m
+  [1m[36mJobSeeker Load (0.3ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`confirmation_token` = '82VE-Wc57dzZwecTdr5r' ORDER BY `job_seekers`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/signup/verified?account_confirmation_success=false
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms | Allocations: 1414)
+
+
+Started POST "/api/jobseekers" for 192.168.65.1 at 2025-10-23 10:54:58 +0000
+Processing by Api::JobseekersController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "password" => "[FILTERED]", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Content in 362ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 4505)
+
+
+Started POST "/api/jobseekers" for 192.168.65.1 at 2025-10-23 10:55:55 +0000
+Processing by Api::JobseekersController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "password" => "[FILTERED]", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Content in 360ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 4289)
+
+
+Started POST "/api/jobseekers" for 192.168.65.1 at 2025-10-23 10:56:18 +0000
+Processing by Api::JobseekersController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "password" => "[FILTERED]", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Content in 361ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 4290)
+
+
+Started POST "/api/jobseekers" for 192.168.65.1 at 2025-10-23 11:01:31 +0000
+Processing by Api::JobseekersController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "password" => "[FILTERED]", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Content in 364ms (Views: 0.3ms | ActiveRecord: 1.7ms | Allocations: 4290)
+
+
+Started POST "/api/jobseekers" for 192.168.65.1 at 2025-10-23 11:08:48 +0000
+Processing by Api::JobseekersController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "password" => "[FILTERED]", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJobSeeker Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Content in 378ms (Views: 0.5ms | ActiveRecord: 3.1ms | Allocations: 4378)
+
+
+Started GET "/api/jobseekers/confirmation?config=default&confirmation_token=[FILTERED]&redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fsignup%2Fverified" for 192.168.65.1 at 2025-10-23 11:17:59 +0000
+Processing by DeviseTokenAuth::ConfirmationsController#show as HTML
+  Parameters: {"config" => "default", "confirmation_token" => "[FILTERED]", "redirect_url" => "http://localhost:3000/signup/verified"}
+[31mUnpermitted parameters: :config, :redirect_url. Context: { controller: DeviseTokenAuth::ConfirmationsController, action: show, request: #<ActionDispatch::Request:0x0000ffff95fd3348>, params: {"config" => "default", "confirmation_token" => "[FILTERED]", "redirect_url" => "http://localhost:3000/signup/verified", "controller" => "devise_token_auth/confirmations", "action" => "show"} }[0m
+  [1m[36mJobSeeker Load (1.3ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`confirmation_token` = '82VE-Wc57dzZwecTdr5r' ORDER BY `job_seekers`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/signup/verified?account_confirmation_success=false
+Completed 302 Found in 17ms (ActiveRecord: 2.1ms | Allocations: 7773)
+
+
+Started POST "/api/jobseekers" for 192.168.65.1 at 2025-10-23 11:18:08 +0000
+Processing by Api::JobseekersController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "password" => "[FILTERED]", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+  [1m[36mJobSeeker Load (0.7ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`provider` = 'email' AND (LOWER(uid) = '20030309shinn@gmail.com' OR LOWER(email) = '20030309shinn@gmail.com') ORDER BY `job_seekers`.`id` ASC LIMIT 1[0m
+  ↳ app/controllers/api/jobseekers_controller.rb:37:in 'Api::JobseekersController#find_existing_resource'
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.7ms | Allocations: 3007)
+
+
+  
+NameError (undefined local variable or method 'render_create_error_email_already_exists' for an instance of Api::JobseekersController):
+  
+app/controllers/api/jobseekers_controller.rb:7:in 'Api::JobseekersController#create'
+  [1m[36mJobSeeker Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `job_seekers`[0m
+  [1m[36mJobSeeker Load (0.5ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` ORDER BY `job_seekers`.`id` ASC LIMIT 1[0m
+  [1m[36mJobSeeker Delete All (5.6ms)[0m  [1m[31mDELETE FROM `job_seekers`[0m
+  [1m[36mJobSeeker Delete All (5.3ms)[0m  [1m[31mDELETE FROM `job_seekers`[0m
+  [1m[36mJobSeeker Delete All (9.8ms)[0m  [1m[31mDELETE FROM `job_seekers`[0m
+  [1m[36mJobSeeker Delete All (4.1ms)[0m  [1m[31mDELETE FROM `job_seekers`[0m
+  [1m[36mJobSeeker Delete All (6.8ms)[0m  [1m[31mDELETE FROM `job_seekers`[0m
+  [1m[36mJobSeeker Delete All (3.8ms)[0m  [1m[31mDELETE FROM `job_seekers`[0m
+  [1m[36mJobSeeker Delete All (4.3ms)[0m  [1m[31mDELETE FROM `job_seekers`[0m
+  [1m[36mJobSeeker Delete All (3.5ms)[0m  [1m[31mDELETE FROM `job_seekers`[0m
+  [1m[36mJobSeeker Delete All (7.1ms)[0m  [1m[31mDELETE FROM `job_seekers`[0m

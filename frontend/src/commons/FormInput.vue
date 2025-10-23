@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const emits = defineEmits(['update:text'])
 const props = defineProps({
@@ -34,19 +34,17 @@ const props = defineProps({
 })
 const touched = ref(false)
 
-// const value = computed({
-//   get() {
-//     return props.text
-//   },
-//   set(value) {
-//     emits('update:text', value)
-//   },
-// })
-
-function handleBlur(value) {
-  if (!touched.value) touched.value = true
-  emits('update:text', value)
-}
+const value = computed({
+  get() {
+    return props.text
+  },
+  set(value) {
+    emits('update:text', value)
+    if (!touched.value) {
+      touched.value = true
+    }
+  },
+})
 </script>
 
 <template>
@@ -59,7 +57,6 @@ function handleBlur(value) {
       :id="props.labelFor"
       :placeholder="props.placeHolder"
       v-model="value"
-      @blur="handleBlur(value)"
     />
   </div>
 </template>
