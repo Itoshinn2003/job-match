@@ -1,10 +1,14 @@
-import axios from axios;
+import axios from 'axios'
 
-export const create = async (params: {
-    email: String,
-    password: String
-}) => {
-    const response = await axios.post("/api/v1/companies", params);
-    return response.data as { id: number, message: string };
+const REGISTRATION_ENDPOINT = 'http://localhost:3001/api/jobseekers'
+
+type JobSeekerRegistration = {
+  email: string
+  password: string
+  confirm_success_url: string
 }
 
+export const create = async (q: JobSeekerRegistration) => {
+  const response = await axios.post(REGISTRATION_ENDPOINT, q)
+  return response.data as { id: number; message: string }
+}

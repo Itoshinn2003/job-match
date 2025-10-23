@@ -45,7 +45,7 @@ function onSubmit() {
 
     <button
       type="submit"
-      :disabled="!isEmailValid || !isPasswordlValid"
+      :disabled="!isEmailValid || !isPasswordValid"
       class="btn btn-primary mx-auto"
     >
       新規登録
