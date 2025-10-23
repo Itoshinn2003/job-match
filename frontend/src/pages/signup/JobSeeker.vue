@@ -3,13 +3,8 @@ import Header from '@/components/Header.vue'
 import JobSeekerSignUpForm from '@/components/form/JobSeekerSignUp.vue'
 import { create } from '@/api/JobSeeker'
 import { useRouter } from 'vue-router'
+import { endpoints } from '@/router/devise'
 
-type SignUpFormData = {
-  email: string
-  password: string
-}
-
-const CONFIRM_SUCCESS_URL = 'http://localhost:3000/signup/verified'
 const router = useRouter()
 
 async function onSubmit(formData: SignUpFormData) {
@@ -17,10 +12,9 @@ async function onSubmit(formData: SignUpFormData) {
     await create({
       email: formData.email,
       password: formData.password,
-      confirm_success_url: CONFIRM_SUCCESS_URL,
+      confirm_success_url: endpoints.CONFIRM_SUCCESS_URL,
     })
-    console.log('a')
-    router.push('/signup/email_sent')
+    router.push({ name: 'EmailSent', query: { email: formData.email } })
   } catch {
     console.log('a')
   }
