@@ -4,7 +4,6 @@ import Header from '@/components/Header.vue'
 import JobSeekerSignUpForm from '@/components/form/JobSeekerSignUp.vue'
 import { create } from '@/api/JobSeeker'
 import { useRouter } from 'vue-router'
-import { endpoints } from '@/router/devise'
 
 const router = useRouter()
 const isSubmitting = ref(false)
@@ -15,7 +14,7 @@ async function onSubmit(formData: JobSeekerFormData) {
     const res = await create({
       email: formData.email,
       password: formData.password,
-      confirm_success_url: endpoints.CONFIRM_SUCCESS_URL,
+      confirm_success_url: import.meta.env.VITE_CONFIRM_SUCCESS_URL,
     })
     router.push({ name: 'EmailSent', query: { email: formData.email } })
   } catch (error) {
