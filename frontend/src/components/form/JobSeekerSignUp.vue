@@ -4,7 +4,10 @@ import { ref, computed } from 'vue'
 import { emailValidate, passwordValidate } from '@/composables/validate'
 
 const emit = defineEmits(['submit'])
-
+const props = defineProps({
+  title: String,
+  isSubmitting: Boolean,
+})
 const formData = ref({
   email: '',
   password: '',
@@ -23,7 +26,7 @@ function onSubmit() {
 
 <template>
   <form @submit.prevent="onSubmit" class="p-5">
-    <h1 class="mb-3">新規登録フォーム</h1>
+    <h1 class="mb-3">{{ props.title }}フォーム</h1>
     <FormInput
       placeHolder="example@gmail.com"
       labelFor="email"
@@ -45,10 +48,10 @@ function onSubmit() {
 
     <button
       type="submit"
-      :disabled="!isEmailValid || !isPasswordValid"
+      :disabled="!isEmailValid || !isPasswordValid || props.isSubmitting"
       class="btn btn-primary mx-auto"
     >
-      新規登録
+      {{ props.isSubmitting ? '送信中' : props.title }}
     </button>
   </form>
 </template>

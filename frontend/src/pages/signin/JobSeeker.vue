@@ -2,9 +2,8 @@
 import { ref } from 'vue'
 import Header from '@/components/Header.vue'
 import JobSeekerSignUpForm from '@/components/form/JobSeekerSignUp.vue'
-import { create } from '@/api/JobSeeker'
+import { signIn } from '@/api/JobSeeker'
 import { useRouter } from 'vue-router'
-import { endpoints } from '@/router/devise'
 
 const router = useRouter()
 const isSubmitting = ref(false)
@@ -12,14 +11,13 @@ const isSubmitting = ref(false)
 async function onSubmit(formData: JobSeekerFormData) {
   isSubmitting.value = true
   try {
-    const res = await create({
+    await signIn({
       email: formData.email,
       password: formData.password,
-      confirm_success_url: endpoints.CONFIRM_SUCCESS_URL,
     })
-    router.push({ name: 'EmailSent', query: { email: formData.email } })
-  } catch (error) {
-    console.log(error)
+    console.log('b')
+  } catch {
+    console.log('a')
   } finally {
     isSubmitting.value = false
   }
@@ -29,7 +27,7 @@ async function onSubmit(formData: JobSeekerFormData) {
   <Header></Header>
   <JobSeekerSignUpForm
     @submit="onSubmit"
-    title="新規登録"
+    title="ログイン"
     :isSubmitting="isSubmitting"
   ></JobSeekerSignUpForm>
 </template>

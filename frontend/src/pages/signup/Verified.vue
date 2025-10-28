@@ -4,5 +4,7 @@ import Header from '@/components/Header.vue'
 <template>
   <Header></Header>
   <h2 class="text-center text-success my-4">メールアドレスの確認が完了しました！</h2>
-  <button class="btn btn-primary d-block mx-auto">ログインする</button>
+  <button class="btn btn-primary d-block mx-auto">
+    <router-link :to="{ name: 'SignInJobSeeker' }">ログインする</router-link>
+  </button>
 </template>
