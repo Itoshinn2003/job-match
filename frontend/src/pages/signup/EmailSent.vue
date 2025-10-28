@@ -2,14 +2,13 @@
 import Header from '@/components/Header.vue'
 import { resendEmail } from '@/api/JobSeeker'
 import { useRoute } from 'vue-router'
-import { endpoints } from '@/router/devise'
 
 const route = useRoute()
 
 function onClick() {
   resendEmail({
     email: route.query.email,
-    redirect_url: endpoints.CONFIRM_SUCCESS_URL,
+    redirect_url: import.meta.env.VITE_CONFIRM_SUCCESS_URL,
   })
 }
 </script>
