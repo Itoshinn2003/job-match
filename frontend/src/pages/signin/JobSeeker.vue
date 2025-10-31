@@ -15,7 +15,6 @@ async function onSubmit(formData: JobSeekerFormData) {
       email: formData.email,
       password: formData.password,
     })
-    console.log('b')
   } catch {
     console.log('a')
   } finally {
