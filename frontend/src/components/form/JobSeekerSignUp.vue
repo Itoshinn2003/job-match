@@ -7,6 +7,7 @@ const emit = defineEmits(['submit'])
 const props = defineProps({
   title: String,
   isSubmitting: Boolean,
+  validationError: String,
 })
 const formData = ref({
   email: '',
@@ -27,6 +28,11 @@ function onSubmit() {
 <template>
   <form @submit.prevent="onSubmit" class="p-5">
     <h1 class="mb-3">{{ props.title }}フォーム</h1>
+    <ul>
+      <li v-for="error in validationError" class="text-danger list-unstyled">
+        {{ error }}
+      </li>
+    </ul>
     <FormInput
       placeHolder="example@gmail.com"
       labelFor="email"

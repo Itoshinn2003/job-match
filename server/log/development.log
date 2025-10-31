@@ -866,3 +866,33 @@ Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.7ms | Allocations: 
 NameError (undefined local variable or method 'render_create_error_email_already_exists' for an instance of Api::JobseekersController):
   
 app/controllers/api/jobseekers_controller.rb:7:in 'Api::JobseekersController#create'
+Started POST "/api/jobseekers" for 192.168.65.1 at 2025-10-31 09:04:03 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (3.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::JobseekersController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "password" => "[FILTERED]", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+  [1m[36mJobSeeker Load (0.8ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/api/jobseekers_controller.rb:4:in 'Api::JobseekersController#create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/jobseekers_controller.rb:14:in 'Api::JobseekersController#create'
+  [1m[36mJobSeeker Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+  ↳ app/controllers/api/jobseekers_controller.rb:14:in 'Api::JobseekersController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/jobseekers_controller.rb:14:in 'Api::JobseekersController#create'
+Completed 422 Unprocessable Content in 824ms (Views: 0.3ms | ActiveRecord: 6.0ms | Allocations: 181810)
+
+
+Started POST "/api/jobseekers" for 192.168.65.1 at 2025-10-31 09:10:21 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (4.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::JobseekersController#create as HTML
+  Parameters: {"email" => "20030309shinn@gmail.com", "password" => "[FILTERED]", "confirm_success_url" => "http://localhost:3000/signup/verified"}
+  [1m[36mJobSeeker Load (0.9ms)[0m  [1m[34mSELECT `job_seekers`.* FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/api/jobseekers_controller.rb:4:in 'Api::JobseekersController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/jobseekers_controller.rb:14:in 'Api::JobseekersController#create'
+  [1m[36mJobSeeker Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM `job_seekers` WHERE `job_seekers`.`email` = '20030309shinn@gmail.com' AND `job_seekers`.`provider` = 'email' LIMIT 1[0m
+  ↳ app/controllers/api/jobseekers_controller.rb:14:in 'Api::JobseekersController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/jobseekers_controller.rb:14:in 'Api::JobseekersController#create'
+Completed 422 Unprocessable Content in 505ms (Views: 0.3ms | ActiveRecord: 7.5ms | Allocations: 51997)
+
+

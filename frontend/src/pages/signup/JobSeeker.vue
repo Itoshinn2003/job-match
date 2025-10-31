@@ -7,9 +7,10 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const isSubmitting = ref(false)
-
+const validationError = ref('')
 async function onSubmit(formData: JobSeekerFormData) {
   isSubmitting.value = true
+  validationError.value = ''
   try {
     const res = await create({
       email: formData.email,
@@ -17,8 +18,8 @@ async function onSubmit(formData: JobSeekerFormData) {
       confirm_success_url: import.meta.env.VITE_CONFIRM_SUCCESS_URL,
     })
     router.push({ name: 'EmailSent', query: { email: formData.email } })
-  } catch (error) {
-    console.log(error)
+  } catch (error: any) {
+    validationError.value = error.response.data.errors.full_messages
   } finally {
     isSubmitting.value = false
   }
@@ -30,5 +31,6 @@ async function onSubmit(formData: JobSeekerFormData) {
     @submit="onSubmit"
     title="新規登録"
     :isSubmitting="isSubmitting"
+    :validationError="validationError"
   ></JobSeekerSignUpForm>
 </template>
