@@ -8,6 +8,7 @@ import { useJobSeekerAuthStore } from '@/stores/auth'
 
 const router = useRouter()
 const isSubmitting = ref(false)
+const validationError = ref('')
 const jobseekerAuth = useJobSeekerAuthStore()
 async function onSubmit(formData: JobSeekerFormData) {
   isSubmitting.value = true
@@ -18,8 +19,8 @@ async function onSubmit(formData: JobSeekerFormData) {
     })
     jobseekerAuth.setCredentials(res.headers)
     router.push({ name: 'JobSeekerProfile', params: { id: '1' } })
-  } catch {
-    console.log('b')
+  } catch (error: any) {
+    validationError.value = error.response.data.errors
   } finally {
     isSubmitting.value = false
   }
@@ -31,5 +32,6 @@ async function onSubmit(formData: JobSeekerFormData) {
     @submit="onSubmit"
     title="ログイン"
     :isSubmitting="isSubmitting"
+    :validationError="validationError"
   ></JobSeekerSignUpForm>
 </template>
