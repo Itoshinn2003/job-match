@@ -4,22 +4,19 @@ import Header from '@/components/Header.vue'
 import JobSeekerSignUpForm from '@/components/form/JobSeekerSign.vue'
 import { signIn } from '@/api/JobSeeker'
 import { useRouter } from 'vue-router'
-import { useJobSeekerAuthStore } from '@/stores/auth'
 
 const router = useRouter()
 const isSubmitting = ref(false)
-const jobseekerAuth = useJobSeekerAuthStore()
+
 async function onSubmit(formData: JobSeekerFormData) {
   isSubmitting.value = true
   try {
-    const res = await signIn({
+    await signIn({
       email: formData.email,
       password: formData.password,
     })
-    jobseekerAuth.setCredentials(res.headers)
-    router.push({ name: 'JobSeekerProfile', params: { id: '1' } })
   } catch {
-    console.log('b')
+    console.log('a')
   } finally {
     isSubmitting.value = false
   }

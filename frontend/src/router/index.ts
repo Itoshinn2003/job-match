@@ -4,6 +4,7 @@ import SignUpJobSeeker from '@/pages/signup/JobSeeker.vue'
 import SignInJobSeeker from '@/pages/signin/JobSeeker.vue'
 import Verified from '@/pages/signup/Verified.vue'
 import EmailSent from '@/pages/signup/EmailSent.vue'
+import JobSeekerProfile from '@/pages/jobseeker/Profile.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/signup/email_sent',
       name: 'EmailSent',
       component: EmailSent,
+    },
+    {
+      path: '/jobseeker/profile/:id',
+      name: 'JobSeekerProfile',
+      component: JobSeekerProfile,
     },
   ],
 })
