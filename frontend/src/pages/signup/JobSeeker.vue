@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Header from '@/components/Header.vue'
-import JobSeekerSignUpForm from '@/components/form/JobSeekerSignUp.vue'
+import JobSeekerSignUpForm from '@/components/form/JobSeekerSign.vue'
 import { create } from '@/api/JobSeeker'
 import { useRouter } from 'vue-router'
 

@@ -10,7 +10,8 @@ export const signIn = async (params: JobSeekerSignIn) => {
     `${import.meta.env.VITE_API_BASE_URL}/api/jobseekers/sign_in`,
     params,
   )
-  return response.data as { id: number; message: string }
+  console.log(response)
+  return response
 }
 
 export const resendEmail = async (params: JobSeekerConfirmation) => {
