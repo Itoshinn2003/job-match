@@ -10,7 +10,6 @@ export const signIn = async (params: JobSeekerSignIn) => {
     `${import.meta.env.VITE_API_BASE_URL}/api/jobseekers/sign_in`,
     params,
   )
-  console.log(response)
   return response
 }
 
