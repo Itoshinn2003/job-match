@@ -59,5 +59,7 @@ function onSubmit() {
     >
       {{ props.isSubmitting ? '送信中' : props.title }}
     </button>
+    <br></br>
+    <slot />
   </form>
 </template>
