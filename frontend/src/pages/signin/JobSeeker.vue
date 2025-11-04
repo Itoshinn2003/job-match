@@ -28,10 +28,9 @@ async function onSubmit(formData: JobSeekerFormData) {
 </script>
 <template>
   <Header></Header>
-  <JobSeekerSignUpForm
-    @submit="onSubmit"
-    title="ログイン"
-    :isSubmitting="isSubmitting"
-    :validationError="validationError"
-  ></JobSeekerSignUpForm>
+  <JobSeekerSignUpForm @submit="onSubmit" title="ログイン" :isSubmitting="isSubmitting"
+    ><router-link :to="{ name: 'ForgotPassword' }"
+      >パスワードを忘れた場合</router-link
+    ></JobSeekerSignUpForm
+  >
 </template>

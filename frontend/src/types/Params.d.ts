@@ -15,3 +15,8 @@ type JobSeekerFormData = {
   email: string
   password: string
 }
+type JobSeekerResetPassword = {
+  password: string
+  password_confirmation: string
+  reset_password_token: string
+}

@@ -32,5 +32,9 @@ async function onSubmit(formData: JobSeekerFormData) {
     title="新規登録"
     :isSubmitting="isSubmitting"
     :validationError="validationError"
-  ></JobSeekerSignUpForm>
+  >
+    <router-link :to="{ name: 'SignInJobSeeker' }" class="btn"
+      >ログインに移動</router-link
+    ></JobSeekerSignUpForm
+  >
 </template>
