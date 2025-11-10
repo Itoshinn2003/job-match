@@ -26,21 +26,21 @@ export const resendResetPassword = async (params: JobSeekerConfirmation) => {
     `${import.meta.env.VITE_API_BASE_URL}/api/jobseekers/password`,
     params,
   )
-  return response.data as { id: number; message: string }
+  return response.data as JobSeekerConfirmationResponse
 }
 
 export const resetPassword = async (
-  params: { password: string; password_confirmation: string },
-  headers: { headers: { accessToken: any; client: any; uid: any } },
+  params: JobSeekerResendPassword,
+  headers: JobSeekerAuthentication,
 ) => {
   const response = await axios.put(
     `${import.meta.env.VITE_API_BASE_URL}/api/jobseekers/password`,
     params,
     {
       headers: {
-        'access-token': headers.headers.accessToken,
-        client: headers.headers.client,
-        uid: headers.headers.uid,
+        'access-token': headers.accessToken,
+        client: headers.client,
+        uid: headers.uid,
       },
     },
   )
