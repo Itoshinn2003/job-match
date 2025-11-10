@@ -22,18 +22,15 @@ async function onSubmit(formData: { password: string; password_confirmation: str
         password_confirmation: formData.password_confirmation,
       },
       {
-        headers: {
-          accessToken: accessToken,
-          client: client,
-          uid: uid,
-        },
+        accessToken: accessToken,
+        client: client,
+        uid: uid,
       },
     )
-    router.push({ name: 'signinJobSeeker' })
-  } catch {
-    router.push({ name: 'SigninJobSeeker' })
+    console.log(res)
   } finally {
     isSubmitting.value = false
+    router.push({ name: 'SignInJobSeeker' })
   }
 }
 </script>
