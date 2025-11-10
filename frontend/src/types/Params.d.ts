@@ -20,3 +20,13 @@ type JobSeekerResetPassword = {
   password_confirmation: string
   reset_password_token: string
 }
+type JobSeekerResendPassword = {
+  password: string
+  password_confirmation: string
+}
+
+type JobSeekerAuthentication = {
+  accessToken: any
+  client: any
+  uid: any
+}

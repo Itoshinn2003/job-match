@@ -12,6 +12,7 @@ const validationError = ref('')
 const jobseekerAuth = useJobSeekerAuthStore()
 async function onSubmit(formData: JobSeekerFormData) {
   isSubmitting.value = true
+  validationError.value = ''
   try {
     const res = await signIn({
       email: formData.email,
