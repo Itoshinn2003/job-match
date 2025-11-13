@@ -2,15 +2,15 @@
 import { ref } from 'vue'
 import Header from '@/components/Header.vue'
 import JobSeekerSignUpForm from '@/components/form/JobSeekerSign.vue'
+import { useSubmitState } from '@/composables/submitState'
 import { create } from '@/api/JobSeeker'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const isSubmitting = ref(false)
-const validationError = ref('')
+const { isSubmitting, validationError, startSubmitting, finishSubmitting, setValidationError } =
+  useSubmitState()
 async function onSubmit(formData: JobSeekerFormData) {
-  isSubmitting.value = true
-  validationError.value = ''
+  startSubmitting()
   try {
     const res = await create({
       email: formData.email,
@@ -19,9 +19,9 @@ async function onSubmit(formData: JobSeekerFormData) {
     })
     router.push({ name: 'EmailSent', query: { email: formData.email } })
   } catch (error: any) {
-    validationError.value = error.response.data.errors.full_messages
+    setValidationError(error.response.data.errors.full_messages)
   } finally {
-    isSubmitting.value = false
+    finishSubmitting()
   }
 }
 </script>
