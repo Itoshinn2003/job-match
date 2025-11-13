@@ -3,7 +3,7 @@ class Api::JobseekersController < DeviseTokenAuth::RegistrationsController
   def create
     existing = JobSeeker.find_by(email: sign_up_params[:email])
 
-    unless existing&.confirmed? 
+    if existing != nil && !existing.confirmed? 
       existing.send_confirmation_instructions
       render json: {
         status: "success"
