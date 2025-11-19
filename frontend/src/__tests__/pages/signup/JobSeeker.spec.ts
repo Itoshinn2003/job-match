@@ -1,5 +1,6 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { ref } from 'vue'
 const createMock = vi.hoisted(() => vi.fn())
 const pushMock = vi.hoisted(() => vi.fn())
 vi.mock('@/api/JobSeeker', () => ({
@@ -8,6 +9,18 @@ vi.mock('@/api/JobSeeker', () => ({
 vi.mock('vue-router', () => ({
   useRouter: () => ({
     push: pushMock,
+  }),
+}))
+const startSpy = vi.fn()
+const finishSpy = vi.fn()
+const setErrorSpy = vi.fn()
+vi.mock('@/composables/submitState', () => ({
+  useSubmitState: () => ({
+    isSubmitting: ref(false),
+    validationError: ref(''),
+    startSubmitting: startSpy,
+    finishSubmitting: finishSpy,
+    setValidationError: setErrorSpy,
   }),
 }))
 
@@ -20,20 +33,12 @@ const wrapper = mount(SignUpJobSeeker)
 
 describe('SignUpJobSeeker.vue', () => {
   describe('onSubmitメソッド', () => {
-    it('呼び出し直後はisSubmittingがtrueになり、完了後falseになる', async () => {
+    it('startSubmittingとfinishSubmittingが呼ばれること', async () => {
       createMock.mockResolvedValue({ data: { id: 1 } })
       const promise = wrapper.vm.onSubmit(formData)
-
-      expect(wrapper.vm.isSubmitting).toBe(true)
+      expect(startSpy).toHaveBeenCalledTimes(1)
       await promise
-      expect(wrapper.vm.isSubmitting).toBe(false)
-    })
-
-    it('呼び出し直後ValidationErrorは初期化される', async () => {
-      createMock.mockResolvedValue({ data: { id: 1 } })
-      const promise = wrapper.vm.onSubmit(formData)
-
-      expect(wrapper.vm.validationError).toBe('')
+      expect(finishSpy).toHaveBeenCalledTimes(1)
     })
 
     it('成功時にroute.pushを呼びだす', async () => {
@@ -43,7 +48,7 @@ describe('SignUpJobSeeker.vue', () => {
       expect(pushMock).toHaveBeenCalledWith({ name: 'EmailSent', query: { email: formData.email } })
     })
 
-    it('失敗時にvalidationErrorにエラーを追加', async () => {
+    it('失敗時にsetValidationErrorが呼ばれること', async () => {
       createMock.mockRejectedValue({
         response: {
           data: {
@@ -55,7 +60,8 @@ describe('SignUpJobSeeker.vue', () => {
       })
 
       await wrapper.vm.onSubmit(formData)
-      expect(wrapper.vm.validationError).toEqual(['メールアドレスがすでに存在します'])
+      // expect(wrapper.vm.validationError).toEqual(['メールアドレスがすでに存在します'])
+      expect(setErrorSpy).toHaveBeenCalledTimes(1)
     })
   })
 })

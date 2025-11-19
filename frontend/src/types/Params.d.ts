@@ -8,7 +8,7 @@ type JobSeekerSignIn = {
   password: string
 }
 type JobSeekerConfirmation = {
-  email: string
+  email: any
   redirect_url: string
 }
 type JobSeekerFormData = {

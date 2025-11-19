@@ -6,10 +6,14 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   namespace :api do
-    mount_devise_token_auth_for 'JobSeeker', at: 'jobseekers', controllers: {
-      #authディレクトリにあるregistrationsコントローラーに設定
-        registrations: 'api/jobseekers'
-      }
+    mount_devise_token_auth_for 'JobSeeker', at: 'jobseekers/auth', controllers: {
+      registrations: 'api/jobseekers'
+    }
+    resources :jobseeker_profiles, only: [] do
+      collection do
+        get 'profile'
+      end
+    end
   end
 
   # Defines the root path route ("/")
