@@ -9,7 +9,11 @@
     "moduleResolution": "node",
     "rootDir": "../",
     "lib": ["ESNext", "dom"],
-    "types": ["nightwatch"]
+    "types": ["nightwatch"],
+    "baseUrl": "..",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["../node_modules/@nightwatch/**/*", "../src/components/**/*", "../tests/e2e/**/*"],
   "ts-node": {

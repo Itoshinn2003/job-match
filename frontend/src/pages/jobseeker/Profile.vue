@@ -1,32 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, Ref } from 'vue'
 import Header from '@/components/Header.vue'
-import JobSeekerSignUpForm from '@/components/form/JobSeekerSign.vue'
-import { signIn } from '@/api/JobSeeker'
+import JobSeekerProfileSection from '@/components/jobSeeker/ProfileSection.vue'
+import { profile } from '@/api/JobSeekerProfile'
 import { useRouter } from 'vue-router'
+import { useJobSeekerAuthStore } from '@/stores/auth'
 
 const router = useRouter()
-const isSubmitting = ref(false)
-
-async function onSubmit(formData: JobSeekerFormData) {
-  isSubmitting.value = true
-  try {
-    await signIn({
-      email: formData.email,
-      password: formData.password,
-    })
-  } catch {
-    console.log('a')
-  } finally {
-    isSubmitting.value = false
-  }
+const jobseekerAuth = useJobSeekerAuthStore()
+const userData = ref(null) as Ref<JobSeekerProfileResponse | null>
+async function fetchProfile() {
+  profile({
+    accessToken: jobseekerAuth.accessToken,
+    client: jobseekerAuth.client,
+    uid: jobseekerAuth.uid,
+  }).then((response) => {
+    userData.value = response
+  })
 }
+fetchProfile()
 </script>
 <template>
   <Header></Header>
-  <JobSeekerSignUpForm
-    @submit="onSubmit"
-    title="ログイン"
-    :isSubmitting="isSubmitting"
-  ></JobSeekerSignUpForm>
+  <JobSeekerProfileSection :userData="userData"></JobSeekerProfileSection>
 </template>

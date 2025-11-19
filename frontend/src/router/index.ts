@@ -37,7 +37,7 @@ const router = createRouter({
       component: EmailSent,
     },
     {
-      path: '/jobseeker/profile/:id',
+      path: '/jobseeker/profile',
       name: 'JobSeekerProfile',
       component: JobSeekerProfile,
     },
