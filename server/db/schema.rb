@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_19_061734) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_20_072339) do
   create_table "job_seeker_job_types", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "job_seeker_id", null: false
     t.bigint "job_type_id", null: false

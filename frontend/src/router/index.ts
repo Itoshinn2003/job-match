@@ -5,6 +5,7 @@ import SignInJobSeeker from '@/pages/signin/JobSeeker.vue'
 import Verified from '@/pages/signup/Verified.vue'
 import EmailSent from '@/pages/signup/EmailSent.vue'
 import JobSeekerProfile from '@/pages/jobseeker/Profile.vue'
+import JobSeekerProfileEdit from '@/pages/jobseeker/ProfileEdit.vue'
 import ForgotPassword from '@/pages/signin/JobSeekerForgotPassword.vue'
 import ResetPassword from '@/pages/signin/JobSeekerResetPassword.vue'
 
@@ -40,6 +41,11 @@ const router = createRouter({
       path: '/jobseeker/profile',
       name: 'JobSeekerProfile',
       component: JobSeekerProfile,
+    },
+    {
+      path: '/jobseeker/profile/edit',
+      name: 'JobSeekerProfileEdit',
+      component: JobSeekerProfileEdit,
     },
     {
       path: '/signin/forgot_password',

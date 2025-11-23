@@ -2,36 +2,15 @@
 import { ref, computed } from 'vue'
 
 const emits = defineEmits(['update:text'])
-const props = defineProps({
-  placeHolder: {
-    type: String,
-    required: true,
-  },
-  labelFor: {
-    type: String,
-    required: true,
-  },
-  labelTitle: {
-    type: String,
-    required: true,
-  },
-  type: {
-    type: String,
-    required: true,
-  },
-  text: {
-    type: String,
-    required: true,
-  },
-  isValid: {
-    type: Boolean,
-    required: true,
-  },
-  errorMessage: {
-    type: String,
-    required: true,
-  },
-})
+const props = defineProps<{
+  placeHolder: string
+  labelFor: string
+  labelTitle: string
+  type: string
+  text: String | undefined
+  isValid?: boolean
+  errorMessage?: string
+}>()
 const touched = ref(false)
 
 const value = computed({

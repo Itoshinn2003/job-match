@@ -14,6 +14,10 @@ Rails.application.routes.draw do
         get 'profile'
       end
     end
+    resources :prefectures, only: [:index] do
+    end
+    resources :job_types, only: [:index] do
+    end
   end
 
   # Defines the root path route ("/")
