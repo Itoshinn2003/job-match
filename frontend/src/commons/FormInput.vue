@@ -7,7 +7,7 @@ const props = defineProps<{
   labelFor: string
   labelTitle: string
   type: string
-  text: String | undefined
+  text: string | undefined
   isValid?: boolean
   errorMessage?: string
 }>()
@@ -27,7 +27,7 @@ const value = computed({
 </script>
 
 <template>
-  <div class="mb-5">
+  <div class="mb-3">
     <label :for="props.labelFor" class="form-label">{{ props.labelTitle }}</label>
     <p v-show="!isValid && touched" class="text-danger">{{ errorMessage }}</p>
     <input

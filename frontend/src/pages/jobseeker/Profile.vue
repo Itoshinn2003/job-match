@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, Ref } from 'vue'
+import { ref } from 'vue'
+import type { Ref } from 'vue'
 import Header from '@/components/Header.vue'
 import JobSeekerProfileSection from '@/components/jobSeeker/ProfileSection.vue'
 import { profile } from '@/api/JobSeekerProfile'

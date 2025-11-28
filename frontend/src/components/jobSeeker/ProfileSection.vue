@@ -28,7 +28,7 @@ const props = defineProps<{
           <dd class="col-sm-9">{{ userData?.birth_date ?? '未入力' }}歳</dd>
 
           <dt class="col-sm-3">希望勤務地</dt>
-          <dd class="col-sm-9">{{ userData?.prefecture.name ?? '未入力' }}</dd>
+          <dd class="col-sm-9">{{ userData?.prefecture?.name ?? '未入力' }}</dd>
 
           <dt class="col-sm-3">希望職</dt>
           <dd class="col-sm-9">

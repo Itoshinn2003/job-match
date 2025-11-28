@@ -1,8 +1,8 @@
 // 生年月日から年齢表示
 export const calculateAge = (birthDay: any) => {
-  let today = new Date()
+  const today = new Date()
   let age = today.getFullYear() - birthDay.year
-  let thisYearsBirthDay = new Date(today.getFullYear(), birthDay.month - 1, birthDay.date)
+  const thisYearsBirthDay = new Date(today.getFullYear(), birthDay.month - 1, birthDay.date)
   if (today > thisYearsBirthDay) {
     age--
   }

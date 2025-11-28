@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 const props = defineProps<{
   labelFor: string
   labelTitle: string

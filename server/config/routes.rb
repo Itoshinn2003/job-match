@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     mount_devise_token_auth_for 'JobSeeker', at: 'jobseekers/auth', controllers: {
       registrations: 'api/jobseekers'
     }
-    resources :jobseeker_profiles, only: [] do
+    resources :jobseeker_profiles, only: [:update] do
       collection do
         get 'profile'
       end

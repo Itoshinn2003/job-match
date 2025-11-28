@@ -30,3 +30,5 @@ type JobSeekerAuthentication = {
   client: any
   uid: any
 }
+
+type JobSeekerProfileParams = {}

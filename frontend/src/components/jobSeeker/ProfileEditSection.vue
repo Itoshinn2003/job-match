@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, Ref, onMounted } from 'vue'
+import { ref, watch } from 'vue'
+import type { Ref } from 'vue'
 import FormInput from '@/commons/FormInput.vue'
 import FormSelect from '@/commons/FormSelect.vue'
 import FormTextArea from '@/commons/FormTextarea.vue'
@@ -8,23 +9,30 @@ const props = defineProps<{
   jobTypes: JobTypeResponse | null
   prefectures: PrefectureResponse | null
 }>()
+const emits = defineEmits(['submit'])
 const userState = ref({}) as Ref<JobSeekerProfileState>
 
-function useSubmit() {
-  console.log(userState)
+function onSubmit() {
+  emits('submit', userState.value)
 }
-onMounted(() => {
-  userState.value = {
-    id: props.userData?.id,
-    first_name: props.userData?.first_name,
-    last_name: props.userData?.last_name,
-    gender: props.userData?.gender,
-    birth_date: props.userData?.birth_date,
-    self_introduction: props.userData?.self_introduction,
-    selectedPrefectureId: props.userData?.prefecture.id,
-    selectedJobTypeIds: props.userData?.job_types.map((job_type) => job_type.id),
-  }
-})
+
+watch(
+  () => props.userData,
+  (data) => {
+    if (!data) return
+    userState.value = {
+      id: data.id,
+      first_name: data.first_name,
+      last_name: data.last_name,
+      gender: data.gender,
+      birth_date: data.birth_date,
+      self_introduction: data.self_introduction,
+      selectedPrefectureId: data.prefecture?.id,
+      selectedJobTypeIds: data.job_types.map((job_type) => job_type.id),
+    }
+    console.log(userState.value)
+  },
+)
 </script>
 
 <template>
@@ -34,7 +42,7 @@ onMounted(() => {
         <h2 class="mb-0">プロフィール編集</h2>
       </div>
       <div class="card-body">
-        <form class="row g-3" @submit="useSubmit()">
+        <form class="row g-3" @submit.prevent="onSubmit()">
           <FormInput
             placeHolder="山田"
             labelFor="last_name"

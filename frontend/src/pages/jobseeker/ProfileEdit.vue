@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, Ref } from 'vue'
+import { ref } from 'vue'
+import type { Ref } from 'vue'
 import Header from '@/components/Header.vue'
 import JobSeekerProfileEditSection from '@/components/jobSeeker/ProfileEditSection.vue'
-import { profile } from '@/api/JobSeekerProfile'
+import { profile, update } from '@/api/JobSeekerProfile'
 import { index as jobTypeIndex } from '@/api/JobTypes'
 import { index as prefectureIndex } from '@/api/Prefectures'
 import { useRouter } from 'vue-router'
@@ -31,10 +32,22 @@ async function fetchFormInfo() {
   })
 }
 fetchFormInfo()
+
+async function onSubmit(userState: JobSeekerProfileState) {
+  try {
+    const res = await update(userState, {
+      accessToken: jobseekerAuth.accessToken,
+      client: jobseekerAuth.client,
+      uid: jobseekerAuth.uid,
+    })
+    router.push({ name: 'JobSeekerProfile' })
+  } catch (error) {}
+}
 </script>
 <template>
   <Header></Header>
   <JobSeekerProfileEditSection
+    @submit="onSubmit"
     :userData="userData"
     :prefectures="prefectures"
     :jobTypes="jobTypes"

@@ -10,7 +10,6 @@ class Api::JobseekersController < DeviseTokenAuth::RegistrationsController
       }
       return
     end
-  
     super
   end
 

@@ -25,7 +25,7 @@ const value = computed({
 </script>
 
 <template>
-  <div class="mb-5">
+  <div class="mb-3">
     <label :for="props.labelFor" class="form-label">{{ props.labelTitle }}</label>
     <select class="form-select" :id="props.labelFor" :multiple="props.multiple">
       <option v-for="option in props.options" :value="option.id">{{ option.name }}</option>
