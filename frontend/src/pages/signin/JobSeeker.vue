@@ -18,9 +18,7 @@ async function onSubmit(formData: JobSeekerFormData) {
       email: formData.email,
       password: formData.password,
     })
-    console.log(jobseekerAuth)
     jobseekerAuth.setCredentials(res.headers)
-    console.log(jobseekerAuth.uid)
     router.push({ name: 'JobSeekerProfile' })
   } catch (error: any) {
     validationError.value = error.response.data.errors
