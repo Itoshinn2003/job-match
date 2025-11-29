@@ -26,7 +26,6 @@ async function fetchFormInfo() {
   jobTypeIndex().then((response) => {
     jobTypes.value = response
   })
-
   prefectureIndex().then((response) => {
     prefectures.value = response
   })
