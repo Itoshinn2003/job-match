@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_20_072339) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_29_094050) do
   create_table "job_seeker_job_types", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "job_seeker_id", null: false
     t.bigint "job_type_id", null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_20_072339) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
-    t.string "gender"
+    t.integer "gender"
     t.string "birth_date"
     t.string "self_introduction"
     t.bigint "prefecture_id"

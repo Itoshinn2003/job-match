@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getFullName } from '@/composables/commonUtil'
+import { getFullName, calculateAge } from '@/composables/commonUtil'
 
 const props = defineProps<{
   userData: JobSeekerProfileResponse | null
@@ -22,10 +22,18 @@ const props = defineProps<{
           </dd>
 
           <dt class="col-sm-3">性別</dt>
-          <dd class="col-sm-9">{{ userData?.gender ?? '未入力' }}</dd>
+          <dd class="col-sm-9">
+            {{
+              userData?.gender === 'male'
+                ? '男性'
+                : userData?.gender === 'female'
+                  ? '女性'
+                  : '未入力'
+            }}
+          </dd>
 
           <dt class="col-sm-3">年齢</dt>
-          <dd class="col-sm-9">{{ userData?.birth_date ?? '未入力' }}歳</dd>
+          <dd class="col-sm-9">{{ calculateAge(userData?.birth_date) }}</dd>
 
           <dt class="col-sm-3">希望勤務地</dt>
           <dd class="col-sm-9">{{ userData?.prefecture?.name ?? '未入力' }}</dd>

@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import type { Ref } from 'vue'
+import { nameValidate } from '@/composables/validate'
 import FormInput from '@/commons/FormInput.vue'
 import FormSelect from '@/commons/FormSelect.vue'
-import FormTextArea from '@/commons/FormTextarea.vue'
+import FormTextArea from '@/commons/FormTextArea.vue'
 const props = defineProps<{
   userData: JobSeekerProfileResponse | null
   jobTypes: JobTypeResponse | null
   prefectures: PrefectureResponse | null
+  isSubmitting: boolean
+  validationError: string
 }>()
 const emits = defineEmits(['submit'])
 const userState = ref({}) as Ref<JobSeekerProfileState>
@@ -15,7 +18,12 @@ const userState = ref({}) as Ref<JobSeekerProfileState>
 function onSubmit() {
   emits('submit', userState.value)
 }
-
+const isFirstNameValid = computed(() => {
+  return nameValidate(userState.value.first_name)
+})
+const isLastNameValid = computed(() => {
+  return nameValidate(userState.value.last_name)
+})
 watch(
   () => props.userData,
   (data) => {
@@ -30,7 +38,6 @@ watch(
       selectedPrefectureId: data.prefecture?.id,
       selectedJobTypeIds: data.job_types.map((job_type) => job_type.id),
     }
-    console.log(userState.value)
   },
 )
 </script>
@@ -42,6 +49,9 @@ watch(
         <h2 class="mb-0">プロフィール編集</h2>
       </div>
       <div class="card-body">
+        <li v-for="error in validationError" class="text-danger list-unstyled">
+          {{ error }}
+        </li>
         <form class="row g-3" @submit.prevent="onSubmit()">
           <FormInput
             placeHolder="山田"
@@ -49,13 +59,18 @@ watch(
             labelTitle="名前（姓）"
             type="text"
             v-model:text="userState.last_name"
+            :isValid="isLastNameValid"
+            errorMessage="使用できない文字が含まれています"
           ></FormInput>
           <FormInput
             placeHolder="太郎"
             labelFor="first_name"
+            f
             labelTitle="名前（名）"
             type="text"
             v-model:text="userState.first_name"
+            :isValid="isFirstNameValid"
+            errorMessage="使用できない文字が含まれています"
           ></FormInput>
 
           <FormInput
@@ -71,6 +86,17 @@ watch(
             :options="prefectures"
             labelTitle="希望勤務地"
             v-model:selected="userState.selectedPrefectureId"
+            :multiple="false"
+          ></FormSelect>
+
+          <FormSelect
+            labelFor="gender"
+            :options="[
+              { id: 'male', name: '男性' },
+              { id: 'female', name: '女性' },
+            ]"
+            labelTitle="性別"
+            v-model:selected="userState.gender"
             :multiple="false"
           ></FormSelect>
 
@@ -91,7 +117,13 @@ watch(
           ></FormTextArea>
 
           <div class="col-12 text-end">
-            <button type="submit" class="btn btn-primary">更新する</button>
+            <button
+              type="submit"
+              :disabled="!isFirstNameValid || !isLastNameValid || props.isSubmitting"
+              class="btn btn-primary"
+            >
+              {{ props.isSubmitting ? '送信中' : '更新' }}
+            </button>
           </div>
         </form>
       </div>

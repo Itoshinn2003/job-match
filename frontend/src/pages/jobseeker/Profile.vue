@@ -17,6 +17,7 @@ async function fetchProfile() {
     uid: jobseekerAuth.uid,
   }).then((response) => {
     userData.value = response
+    console.log(userData.value)
   })
 }
 fetchProfile()

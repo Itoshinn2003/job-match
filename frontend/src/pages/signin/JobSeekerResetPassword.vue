@@ -5,13 +5,14 @@ import ResetPasswordForm from '@/components/form/ResetPasswordForm.vue'
 import { resetPassword } from '@/api/JobSeeker'
 import { useRouter, useRoute } from 'vue-router'
 import { useJobSeekerAuthStore } from '@/stores/auth'
+import { useSubmitState } from '@/composables/submitState'
 
 const route = useRoute()
 const router = useRouter()
-const isSubmitting = ref(false)
+const { isSubmitting, startSubmitting, finishSubmitting } = useSubmitState()
 const jobseekerAuth = useJobSeekerAuthStore()
 async function onSubmit(formData: { password: string; password_confirmation: string }) {
-  isSubmitting.value = true
+  startSubmitting()
   try {
     const accessToken = route.query['access-token']
     const client = route.query.client
@@ -27,9 +28,8 @@ async function onSubmit(formData: { password: string; password_confirmation: str
         uid: uid,
       },
     )
-    console.log(res)
   } finally {
-    isSubmitting.value = false
+    finishSubmitting()
     router.push({ name: 'SignInJobSeeker' })
   }
 }

@@ -5,7 +5,7 @@ const props = defineProps<{
   labelFor: string
   labelTitle: string
   options: any
-  selected?: number | number[] | null
+  selected?: any
   multiple: boolean
 }>()
 
@@ -27,8 +27,11 @@ const value = computed({
 <template>
   <div class="mb-3">
     <label :for="props.labelFor" class="form-label">{{ props.labelTitle }}</label>
-    <select class="form-select" :id="props.labelFor" :multiple="props.multiple">
-      <option v-for="option in props.options" :value="option.id">{{ option.name }}</option>
+    <select class="form-select" :id="props.labelFor" :multiple="props.multiple" v-model="value">
+      <option value="" disabled v-show="!props.multiple">選択してください</option>
+      <option v-for="option in props.options" :value="option.id">
+        {{ option.name }}
+      </option>
     </select>
   </div>
 </template>

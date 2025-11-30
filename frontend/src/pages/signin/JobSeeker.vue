@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Header from '@/components/Header.vue'
+import { useSubmitState } from '@/composables/submitState'
 import JobSeekerSignUpForm from '@/components/form/JobSeekerSign.vue'
 import { signIn } from '@/api/JobSeeker'
 import { useRouter } from 'vue-router'
 import { useJobSeekerAuthStore } from '@/stores/auth'
 
 const router = useRouter()
-const isSubmitting = ref(false)
-const validationError = ref('')
+const { isSubmitting, startSubmitting, finishSubmitting, setValidationError } = useSubmitState()
 const jobseekerAuth = useJobSeekerAuthStore()
 async function onSubmit(formData: JobSeekerFormData) {
-  isSubmitting.value = true
-  validationError.value = ''
+  startSubmitting()
   try {
     const res = await signIn({
       email: formData.email,
@@ -21,9 +20,9 @@ async function onSubmit(formData: JobSeekerFormData) {
     jobseekerAuth.setCredentials(res.headers)
     router.push({ name: 'JobSeekerProfile' })
   } catch (error: any) {
-    validationError.value = error.response.data.errors
+    setValidationError(error.response.data.errors)
   } finally {
-    isSubmitting.value = false
+    finishSubmitting()
   }
 }
 </script>
