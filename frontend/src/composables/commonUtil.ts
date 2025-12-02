@@ -1,4 +1,3 @@
-// 生年月日から年齢表示
 export const calculateAge = (birthDay: any) => {
   if (!birthDay) {
     return '未入力'
@@ -18,9 +17,9 @@ export const calculateAge = (birthDay: any) => {
 }
 
 export const getFullName = (firstName: string | undefined, lastName: string | undefined) => {
-  if (firstName == undefined && lastName == undefined) {
+  if (!firstName && !lastName) {
     return '未入力'
   } else {
-    return `${lastName ?? ''} ${firstName ?? ''}`
+    return `${lastName ?? ''}${firstName ?? ''}`
   }
 }
