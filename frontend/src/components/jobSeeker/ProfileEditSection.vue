@@ -4,11 +4,13 @@ import type { Ref } from 'vue'
 import { nameValidate } from '@/composables/validate'
 import FormInput from '@/commons/FormInput.vue'
 import FormSelect from '@/commons/FormSelect.vue'
-import FormTextArea from '@/commons/FormTextarea.vue'
+import FormTextArea from '@/commons/FormTextArea.vue'
 const props = defineProps<{
   userData: JobSeekerProfileResponse | null
   jobTypes: JobTypeResponse | null
   prefectures: PrefectureResponse | null
+  isSubmitting: boolean
+  validationError: string
 }>()
 const emits = defineEmits(['submit'])
 const userState = ref({}) as Ref<JobSeekerProfileState>
@@ -47,6 +49,9 @@ watch(
         <h2 class="mb-0">プロフィール編集</h2>
       </div>
       <div class="card-body">
+        <li v-for="error in validationError" class="text-danger list-unstyled">
+          {{ error }}
+        </li>
         <form class="row g-3" @submit.prevent="onSubmit()">
           <FormInput
             placeHolder="山田"
@@ -112,7 +117,13 @@ watch(
           ></FormTextArea>
 
           <div class="col-12 text-end">
-            <button type="submit" class="btn btn-primary">更新する</button>
+            <button
+              type="submit"
+              :disabled="!isFirstNameValid || !isLastNameValid || props.isSubmitting"
+              class="btn btn-primary"
+            >
+              {{ props.isSubmitting ? '送信中' : '更新' }}
+            </button>
           </div>
         </form>
       </div>
