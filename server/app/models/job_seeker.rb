@@ -15,7 +15,3 @@ class JobSeeker < ApplicationRecord
     validates :self_introduction, length: { maximum: 500 }, allow_nil: true
     enum gender: { male: 1, female: 2 }
 end
-
-
-
-# birth_date: "2025-11-06"
